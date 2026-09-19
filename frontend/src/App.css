@@ -8,6 +8,7 @@ body,
   margin: 0;
   min-height: 100%;
   width: 100%;
+  max-width: 100%;
 }
 
 html,
@@ -18,9 +19,20 @@ body {
   color: #16302b;
 }
 
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
 .page {
   min-height: 100vh;
-  padding: 28px;
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
   background:
     radial-gradient(circle at 12% -10%, rgba(46, 196, 182, 0.22), transparent 36%),
     radial-gradient(circle at 90% 8%, rgba(15, 90, 82, 0.16), transparent 32%),
@@ -29,10 +41,12 @@ body {
 
 .toast {
   position: fixed;
-  top: 18px;
-  right: 18px;
+  top: max(12px, env(safe-area-inset-top));
+  left: 12px;
+  right: 12px;
+  margin-inline: auto;
   z-index: 40;
-  max-width: min(420px, calc(100vw - 32px));
+  max-width: min(420px, calc(100vw - 24px));
   padding: 14px 16px;
   border-radius: 16px;
   font-weight: 650;
@@ -79,13 +93,19 @@ body {
     linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 40%),
     linear-gradient(135deg, #0b3d38, #14635b 58%, #1a7a6d);
   color: white;
-  border-radius: 28px;
-  padding: 34px;
+  border-radius: clamp(18px, 4vw, 28px);
+  padding: clamp(18px, 4vw, 34px);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 24px;
   box-shadow: 0 24px 50px rgba(11, 61, 56, 0.28);
+}
+
+.hero > div {
+  min-width: 0;
+  flex: 1 1 280px;
 }
 
 .hero h1 {
@@ -142,12 +162,15 @@ body {
 
 .heroStats {
   display: flex;
+  flex-wrap: wrap;
   gap: 14px;
   align-items: stretch;
+  flex: 1 1 220px;
 }
 
 .heroStats div {
-  min-width: 124px;
+  min-width: 0;
+  flex: 1 1 120px;
   padding: 18px;
   border-radius: 20px;
   text-align: center;
@@ -169,7 +192,7 @@ body {
 
 .topGrid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 22px;
   margin-bottom: 24px;
 }
@@ -180,9 +203,10 @@ body {
 .chatPanel {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #d7e5e1;
-  border-radius: 24px;
-  padding: 24px;
+  border-radius: clamp(16px, 3vw, 24px);
+  padding: clamp(16px, 3vw, 24px);
   box-shadow: 0 12px 32px rgba(16, 48, 42, 0.06);
+  min-width: 0;
 }
 
 .panel h2,
@@ -285,10 +309,11 @@ body {
 textarea,
 input {
   width: 100%;
+  max-width: 100%;
   border: 1px solid #c9dcd7;
   border-radius: 16px;
   padding: 14px;
-  font-size: 15px;
+  font-size: 16px;
   outline: none;
   background: white;
   font-family: inherit;
@@ -339,17 +364,31 @@ button:disabled {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 16px;
+}
+
+.actions button,
+.primaryBtn {
+  width: auto;
+  min-height: 48px;
 }
 
 .bestCard {
   border: 2px solid #fbbf24;
   margin-bottom: 24px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   background: linear-gradient(180deg, #fffbeb, #ffffff);
+}
+
+.bestCard > div {
+  min-width: 0;
+  flex: 1 1 220px;
 }
 
 .bestCard h2 {
@@ -358,7 +397,7 @@ button:disabled {
 
 .mainLayout {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr) minmax(0, 360px);
   gap: 22px;
   align-items: start;
 }
@@ -397,13 +436,20 @@ button:disabled {
 
 .candidateHeader {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 16px;
+}
+
+.candidateHeader > div {
+  min-width: 0;
+  flex: 1 1 180px;
 }
 
 .infoGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
   gap: 12px;
 }
 
@@ -569,14 +615,21 @@ pre {
 
 .chatInput {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
+}
+
+.chatInput input {
+  flex: 1 1 160px;
 }
 
 .chatInput button {
   background: #14635b;
   color: white;
-  padding: 0 16px;
+  padding: 12px 16px;
+  min-height: 48px;
+  flex: 0 0 auto;
 }
 
 @keyframes spin {
@@ -596,9 +649,15 @@ pre {
   }
 }
 
+@media (hover: none) {
+  button:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
 @media (max-width: 1300px) {
   .mainLayout {
-    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
   }
 
   .chatPanel {
@@ -609,7 +668,7 @@ pre {
 
 @media (max-width: 900px) {
   .page {
-    padding: 16px;
+    padding: 12px;
   }
 
   .hero,
@@ -620,18 +679,58 @@ pre {
   }
 
   .hero {
-    display: block;
+    display: flex;
   }
 
   .heroStats {
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 4px;
   }
 
-  .candidatePanel {
+  .candidatePanel,
+  .chatPanel {
     position: static;
   }
 
   .hero h1 {
-    font-size: 32px;
+    font-size: clamp(26px, 8vw, 32px);
+  }
+
+  .primaryBtn,
+  .secondaryBtn,
+  .actions button {
+    width: 100%;
+  }
+
+  .chat.user {
+    margin-left: 12px;
+  }
+
+  .chatWindow {
+    height: min(52vh, 370px);
+  }
+}
+
+@media (max-width: 520px) {
+  .steps li {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+
+  .selectedFile {
+    flex-wrap: wrap;
+  }
+
+  .selectedFile button {
+    width: 100%;
+  }
+
+  .candidateItem {
+    align-items: flex-start;
+  }
+
+  pre {
+    font-size: 12px;
+    padding: 12px;
   }
 }
