@@ -1,0 +1,37 @@
+                       precision    recall  f1-score   support
+
+       B-Achievements     1.0000    0.3333    0.5000         3
+            B-College     0.7273    0.3333    0.4571        24
+       B-College Name     0.8333    0.7267    0.7764       172
+B-Companies worked at     0.7989    0.5238    0.6327       273
+             B-Degree     0.7636    0.5650    0.6495       223
+        B-Designation     0.8343    0.5105    0.6334       286
+      B-Email Address     0.8000    0.4000    0.5333        20
+    B-Graduation Year     0.6500    0.1529    0.2476        85
+           B-Location     0.8933    0.4621    0.6091       145
+               B-Name     0.8587    0.6870    0.7633       115
+           B-Projects     1.0000    1.0000    1.0000         1
+        B-Relocate To     0.0000    0.0000    0.0000         1
+         B-Relocation     0.0000    0.0000    0.0000         2
+             B-Skills     0.5689    0.1922    0.2873       666
+              B-State     0.0000    0.0000    0.0000         1
+B-Years of Experience     0.8148    0.4853    0.6083       136
+       I-Achievements     1.0000    0.3333    0.5000        18
+            I-College     0.8000    0.4348    0.5634        46
+       I-College Name     0.8133    0.7043    0.7548       470
+I-Companies worked at     0.7841    0.5798    0.6667       545
+             I-Degree     0.7564    0.6427    0.6949       599
+        I-Designation     0.8144    0.4897    0.6117       439
+      I-Email Address     0.8000    0.3636    0.5000        11
+    I-Graduation Year     0.0000    0.0000    0.0000         3
+           I-Location     0.0000    0.0000    0.0000        19
+               I-Name     0.8400    0.7456    0.7900       169
+           I-Projects     1.0000    1.0000    1.0000         5
+         I-Relocation     0.0000    0.0000    0.0000         6
+             I-Skills     0.5627    0.1613    0.2508      1252
+I-Years of Experience     0.8000    0.3966    0.5303       232
+                    O     0.9603    0.9905    0.9752     80537
+
+             accuracy                         0.9524     86504
+            macro avg     0.6605    0.4263    0.5012     86504
+         weighted avg     0.9438    0.9524    0.9443     86504

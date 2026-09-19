@@ -1,0 +1,11 @@
+Flask
+flask-cors
+gunicorn
+PyPDF2
+joblib
+sklearn-crfsuite
+scikit-learn
+tensorflow
+numpy
+requests
+python-dotenv
